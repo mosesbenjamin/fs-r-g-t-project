@@ -1,10 +1,10 @@
 import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 import { Field, ObjectType } from "type-graphql";
 
-@ObjectType() // exposes to graphql schema using type-graphql
+@ObjectType()
 @Entity()
-export class Post {
-  @Field() // exposes to graphql schema using type-graphql
+export class User {
+  @Field()
   @PrimaryKey()
   id!: number;
 
@@ -17,6 +17,9 @@ export class Post {
   updatedAt: Date = new Date();
   
   @Field()
+  @Property({type: 'text', unique: true})
+  username!: string;
+
   @Property({type: 'text'})
-  title!: string;
+  password!: string;
 }
