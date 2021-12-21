@@ -1,0 +1,25 @@
+req.session.userId = user.id
+
+=======
+Meaning
+=======
+
+{ userId: 1 } -> send this to redis
+1. Gets stored in redis (redis is a key value store):
+sess: iuttrlgihihi -> { userId: 1 } // will look like this in redis
+
+2. //What session middleware does
+express-session will set cookie on user's browser hgkufufkuy676767 (sets a signed key on the user's browser)
+
+3. When user makes a request
+hgkufufkuy676767 -> gets sent to the server
+
+4. Gets decrypted on the server using secret we specified
+hgkufufkuy676767 -> sess: iuttrlgihihi 
+
+5. Make a request to redis, looks up the key in redis
+sess: iuttrlgihihi -> { userId: 1 }
+
+6. 
+req.session = { userId: 1 }
+
